@@ -53,8 +53,8 @@ def args_parser():
     parser.add_argument("--seed", type=int, default=3306)
     parser.add_argument("--nworkers", type=int, default=1)
     parser.add_argument("--export_model", type=bool, default=True)
-    parser.add_argument("--output_dir", type=str, default="/data/nfsdata/data/yuxian/train_logs")
-    parser.add_argument("--data_sign", type=str, default="nlpcc-dbqa")
+    parser.add_argument("--output_dir", type=str, default="")
+    parser.add_argument("--data_sign", type=str, default="")
     # classifier_sign == "single_linear
     parser.add_argument("--classifier_sign", type=str, default="single_linear")
     parser.add_argument("--log_path", type=str, default="")
@@ -252,9 +252,9 @@ def train(model, optimizer, train_dataloader, dev_dataloader, test_dataloader, c
         torch.save(model_to_save.state_dict(), output_model_file)
 
     logger.info("=&=" * 15)
-    logger.info(f"DEV: current best precision: {dev_best_precision}, recall: {dev_best_recall}, f1"
-                f", acc: {dev_best_acc}, loss: {dev_best_loss}")
-    logger.info(f"TEST: current best precision: {test_best_precision}, recall: {test_best_recall},"
+    logger.info(f"DEV: current best precision: {max(dev_best_precision)}, recall: {max(dev_best_recall)}, f1"
+                f": {dev_best_f1}, acc: {dev_best_acc}, loss: {dev_best_loss}")
+    logger.info(f"TEST: current best precision: {max(test_best_precision)}, recall: {max(test_best_recall)},"
                 f" f1: {test_best_f1}, acc: {test_best_acc}, loss: {test_best_loss}")
     logger.info("=&=" * 15)
 

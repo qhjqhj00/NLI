@@ -5,19 +5,19 @@ data_dir=../data
 output_dir=../${ts}
 
 config_path=./config/bert.json
-bert_model=bert-base-chinese
+bert_model=/home/qhj/.lensnlp/language_model/bert-base-chinese.tar.gz 
 
 task_name=clf
-max_seq_len=128
+max_seq_len=64
 train_batch=64
 dev_batch=64
 test_batch=64
 learning_rate=2e-5
-num_train_epochs=4
+num_train_epochs=8
 warmup=0.1
 local_rank=-1
 seed=3306
-checkpoint=100
+checkpoint=50
 log_dir=../${ts}
 
 python preprocess.py
