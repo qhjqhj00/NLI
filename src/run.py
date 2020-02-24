@@ -58,6 +58,7 @@ def args_parser():
     # classifier_sign == "single_linear
     parser.add_argument("--classifier_sign", type=str, default="single_linear")
     parser.add_argument("--log_path", type=str, default="")
+    parser.add_argument("--vocab", type=str, default="")
     args = parser.parse_args()
 
     args.train_batch_size = args.train_batch_size // args.gradient_accumulation_steps
