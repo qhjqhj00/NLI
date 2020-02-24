@@ -77,26 +77,7 @@ def args_parser():
 def load_data(config):
     # load some data and processor
     # data_processor = MsraNerProcessor()
-    if config.data_sign == "nlpcc-dbqa":
-        data_processor = DBQAProcessor()
-    elif config.data_sign == 'chnsenticorp':
-        data_processor = ChnSentiCorpProcessor()
-    elif config.data_sign == 'dianping':
-        data_processor = DianPingProcessor()
-    elif config.data_sign == 'chnsenticorp':
-        data_processor = ChnSentiCorpProcessor()
-    elif config.data_sign == 'xnli':
-        data_processor = XNLIProcessor()
-    elif config.data_sign == 'fudan':
-        data_processor = FuDanProcessor()
-    elif config.data_sign == 'ifeng':
-        data_processor = ifengProcessor()
-    elif config.data_sign == 'bq':
-        data_processor = BQProcessor()
-    elif config.data_sign == 'lcqmc':
-        data_processor = LCQMCProcessor()
-    else:
-        raise ValueError
+    data_processor = Processor()
 
     label_list = data_processor.get_labels()
     tokenizer = BertTokenizer.from_pretrained(config.bert_model, do_lower_case=True)
@@ -357,7 +338,7 @@ def merge_config(args_config):
 
 def main():
     args_config = args_parser()
-    init_log(logger, Path(args_config.log_path))
+    init_log(logger, args_config.log_path)
     config = merge_config(args_config)
     train_loader, dev_loader, test_loader, num_train_steps, label_list = load_data(config)
     model, optimizer, device, n_gpu = load_model(config, num_train_steps, label_list)
