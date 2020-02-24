@@ -20,6 +20,7 @@ seed=3306
 checkpoint=50
 log_dir=../${ts}
 
+python generate_dict.py
 python preprocess.py
 
 CUDA_VISIBLE_DEVICES=1 python run.py \

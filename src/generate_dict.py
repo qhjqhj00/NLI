@@ -5,12 +5,12 @@ def load(path):
     data = [s.split(',') for s in data]
     return data
 
-med = open('./data/MED.txt').read().strip().split('\n')
-ill = open('./data/ILL.txt').read().strip().split('\n')
-dev = load('data/dev.csv')
-train = load('data/train.csv')
+med = open('../raw/MED.txt').read().strip().split('\n')
+ill = open('../raw/ILL.txt').read().strip().split('\n')
+dev = load('../raw/dev.csv')
+train = load('../raw/train.csv')
 
-d = Dict("data")
+d = Dict("../data")
 for m in med:
     d[m] = {'med': '药品'}
 for i in ill:

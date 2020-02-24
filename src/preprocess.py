@@ -1,10 +1,15 @@
+import csv
 from d import Dict
 
 dic = Dict('../data')
 
 def load(path):
-    data = open(path).read().strip().split('\n')[1:]
-    data = [s.split(',') for s in data]
+    data = []
+    with open(path, 'r', encoding='utf8', errors='ignore') as f:
+        reader = csv.reader(f, delimiter=",")
+        for line in reader:
+            data.append(line)
+    data.pop(0)
     return data
 
 def replace(sentence):
@@ -32,5 +37,5 @@ def process_data(path, save_path, split_dev = False):
                 s1 = replace(s[1])
                 f.write(f'{s[-1]}\t{s1}\t{s2}\n')
             f.truncate()
-process_data('../data/dev.csv', '../data/processed_test.tsv')
-process_data('../data/train.csv', '../data/processed_train.tsv', split_dev = True)
+process_data('../raw/dev.csv', '../data/processed_test.tsv')
+process_data('../raw/train.csv', '../data/processed_train.tsv', split_dev = True)
