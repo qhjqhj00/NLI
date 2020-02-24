@@ -1,15 +1,20 @@
+import os 
+import sys 
 
+root_path = "/".join(os.path.realpath(__file__).split("/")[:-2])
+if root_path not in sys.path:
+    sys.path.insert(0, root_path)
 import torch
 
 
 from src.utils.tokenization import BertTokenizer
 from src.utils.optimization import BertAdam
-from src.dataset_readers.bert_config import Config
+from src.utils.bert_config import Config
 from src.utils.data_reader import *
 from src.models.bert_classifier import BertClassifier
 from src.utils.cls_evaluate_funcs import acc_and_f1
 from src.utils.bert_data_utils import convert_examples_to_features
-from src.dataset_readers.bert_config import init_log
+from src.utils.bert_config import init_log
 
 
 logging.basicConfig()

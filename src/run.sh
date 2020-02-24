@@ -22,7 +22,7 @@ log_dir=../${ts}
 
 python preprocess.py
 
-CUDA_VISIBLE_DEVICES=1 python ../../run_bert_classifier.py \
+CUDA_VISIBLE_DEVICES=1 python run.py \
 --data_sign ${data_sign} \
 --config_path ${config_path} \
 --data_dir ${data_dir} \

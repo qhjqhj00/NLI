@@ -24,7 +24,7 @@ def process_data(path, save_path, split_dev = False):
     if split_dev:
         l = len(data)
         with open(save_path.replace('train', 'dev'), 'w') as f:
-            for s in data(:int(0.2*l)):
+            for s in data[:int(0.2*l)]:
                 s2 = replace(s[2])
                 s1 = replace(s[1])
                 f.write(f'{s[-1]}\t{s1}\t{s2}\n')
