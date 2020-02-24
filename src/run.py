@@ -80,7 +80,7 @@ def load_data(config):
     data_processor = Processor()
 
     label_list = data_processor.get_labels()
-    tokenizer = BertTokenizer.from_pretrained(config.bert_model, do_lower_case=True)
+    tokenizer = BertTokenizer.from_pretrained(config.vocab, do_lower_case=True)
 
     # load data exampels
     train_examples = data_processor.get_train_examples(config.data_dir)

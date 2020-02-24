@@ -6,6 +6,7 @@ output_dir=../${ts}
 
 config_path=./config/bert.json
 bert_model=/home/qhj/.lensnlp/language_model/bert-base-chinese.tar.gz 
+vocab = ../raw/vocab.txt
 
 task_name=clf
 max_seq_len=64
@@ -26,6 +27,7 @@ python preprocess.py
 CUDA_VISIBLE_DEVICES=1 python run.py \
 --data_sign ${data_sign} \
 --config_path ${config_path} \
+--vocab ${vocab}
 --data_dir ${data_dir} \
 --bert_model ${bert_model} \
 --task_name ${task_name} \
