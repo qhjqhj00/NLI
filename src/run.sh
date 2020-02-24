@@ -4,7 +4,7 @@ data_sign=conv
 data_dir=../data
 output_dir=../${ts}
 
-config_path=../../config/bert.json
+config_path=./config/bert.json
 bert_model=bert-base-chinese
 
 task_name=clf

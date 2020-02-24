@@ -1,6 +1,6 @@
 import os 
 import sys 
-
+from pathlib import Path
 root_path = "/".join(os.path.realpath(__file__).split("/")[:-2])
 if root_path not in sys.path:
     sys.path.insert(0, root_path)
@@ -338,7 +338,7 @@ def merge_config(args_config):
 
 def main():
     args_config = args_parser()
-    init_log(logger, args_config.log_path)
+    init_log(logger, Path(args_config.log_path))
     config = merge_config(args_config)
     train_loader, dev_loader, test_loader, num_train_steps, label_list = load_data(config)
     model, optimizer, device, n_gpu = load_model(config, num_train_steps, label_list)

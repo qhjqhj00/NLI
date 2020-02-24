@@ -18,16 +18,19 @@ def process_data(path, save_path, split_dev = False):
     data = load(path)
     with open(save_path, 'w') as f:
         for s in data:
+            if s[-1] == '': continue
             s2 = replace(s[2])
             s1 = replace(s[1])
             f.write(f'{s[-1]}\t{s1}\t{s2}\n')
+        f.truncate()
     if split_dev:
         l = len(data)
         with open(save_path.replace('train', 'dev'), 'w') as f:
             for s in data[:int(0.2*l)]:
+                if s[-1] == '': continue
                 s2 = replace(s[2])
                 s1 = replace(s[1])
                 f.write(f'{s[-1]}\t{s1}\t{s2}\n')
-
+            f.truncate()
 process_data('../data/dev.csv', '../data/processed_test.tsv')
 process_data('../data/train.csv', '../data/processed_train.tsv', split_dev = True)

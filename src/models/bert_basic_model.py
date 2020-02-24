@@ -5,7 +5,7 @@ import tarfile
 import shutil 
 import logging  
 import tempfile 
-
+import os
 
 import torch 
 from torch import nn 
@@ -23,7 +23,7 @@ PRETRAINED_MODEL_ARCHIVE_MAP = {
     'bert-large-cased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased.tar.gz",
     'bert-base-multilingual-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-uncased.tar.gz",
     'bert-base-multilingual-cased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-cased.tar.gz",
-    'bert-base-chinese': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-chinese.tar.gz",
+    'bert-base-chinese': "/home/qhj/.lensnlp/language_model/bert-base-chinese.tar.gz",
 }
 
 
