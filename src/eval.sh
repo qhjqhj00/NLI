@@ -2,12 +2,12 @@
 ts=`date +%Y%m%d%H%M`
 data_sign=conv
 data_dir=../data
-output_dir=../${ts}
+output_dir=../eval_result/
 
 config_path=./config/bert.json
 bert_model=/home/qhj/.lensnlp/language_model/bert-base-chinese.tar.gz 
 vocab=../raw/vocab.txt
-
+model_path=../202002250845/
 task_name=clf
 max_seq_len=64
 train_batch=64
