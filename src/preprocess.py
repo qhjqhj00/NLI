@@ -4,7 +4,7 @@ import argparse
 
 dic = Dict('../data')
 parser = argparse.ArgumentParser()
-parser.add_argument("--replace", default=True, type=str)
+parser.add_argument("--replace", action='store_true')
 args = parser.parse_args()
 
 def load(path):
