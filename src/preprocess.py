@@ -16,7 +16,7 @@ def load(path):
     data.pop(0)
     return data
 
-def replace(sentence):
+def mask(sentence):
     candicates = dic.multi_max_match(sentence)
     for k in candicates:
         placeholder = list(candicates[k]['value'].values())[0]
@@ -29,8 +29,8 @@ def process_data(path, save_path, split_dev = False, replace = True):
         for s in data:
             if s[-1] == '': continue
             if replace:
-                s2 = replace(s[2])
-                s1 = replace(s[1])
+                s2 = mask(s[2])
+                s1 = mask(s[1])
             else:
                 s2 = s[2]
                 s1 = s[1]
@@ -42,8 +42,8 @@ def process_data(path, save_path, split_dev = False, replace = True):
             for s in data[:int(0.2*l)]:
                 if s[-1] == '': continue
                 if replace:
-                    s2 = replace(s[2])
-                    s1 = replace(s[1])
+                    s2 = mask(s[2])
+                    s1 = mask(s[1])
                 else:
                     s2 = s[2]
                     s1 = s[1]
