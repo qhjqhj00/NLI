@@ -10,6 +10,6 @@ cd src
 | 数据预处理          | 模型                       | Dev Acc. |
 | ------------------- | -------------------------- | -------- |
 | 疾病 药品换成占位符 | Bert - Transformer encoder | 92.75    |
-|                     |                            |          |
+|  不做预处理       | Bert - Transformer encoder | 94.15|
 |                     |                            |          |
 

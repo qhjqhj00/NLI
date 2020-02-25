@@ -128,7 +128,7 @@ def load_data(config):
     test_dataloader = DataLoader(test_data, sampler=test_sampler, \
                                  batch_size=config.test_batch_size, num_workers=config.nworkers)
 
-    num_train_steps = int(len(train_examples) / config.train_batch_size * 5)
+    num_train_steps = int(len(train_examples) / config.train_batch_size * config.num_train_epochs)
     return train_dataloader, dev_dataloader, test_dataloader, num_train_steps, label_list
 
 
