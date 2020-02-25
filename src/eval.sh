@@ -32,7 +32,7 @@ CUDA_VISIBLE_DEVICES=1 python eval.py \
 --bert_model ${bert_model} \
 --task_name ${task_name} \
 --max_seq_length ${max_seq_len} \
---model_path ${model_path}
+--model_path ${model_path} \
 --do_train \
 --do_eval \
 --train_batch_size ${train_batch} \

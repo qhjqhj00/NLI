@@ -253,9 +253,9 @@ def train(model, optimizer, train_dataloader, dev_dataloader, test_dataloader, c
         torch.save(model_to_save.state_dict(), output_model_file)
 
     logger.info("=&=" * 15)
-    logger.info(f"DEV: current best precision: {max(dev_best_precision)}, recall: {max(dev_best_recall)}, f1"
+    logger.info(f"DEV: current best precision: {dev_best_precision}, recall: {dev_best_recall}, f1"
                 f": {dev_best_f1}, acc: {dev_best_acc}, loss: {dev_best_loss}")
-    logger.info(f"TEST: current best precision: {max(test_best_precision)}, recall: {max(test_best_recall)},"
+    logger.info(f"TEST: current best precision: {test_best_precision}, recall: {test_best_recall},"
                 f" f1: {test_best_f1}, acc: {test_best_acc}, loss: {test_best_loss}")
     logger.info("=&=" * 15)
 
@@ -321,8 +321,8 @@ def eval_checkpoint(model_object, eval_dataloader, config, \
 
     average_loss = round(eval_loss / eval_steps, 4)
     eval_f1 = round(sum(eval_f1) / (len(eval_f1)), 4)
-    # eval_precision = round(sum(eval_precision) / len(eval_precision), 4)
-    # eval_recall = round(sum(eval_recall) / len(eval_recall), 4)
+    eval_precision = round(sum(eval_precision) / len(eval_precision), 4)
+    eval_recall = round(sum(eval_recall) / len(eval_recall), 4)
     eval_accuracy = round(sum(eval_accuracy) / len(eval_accuracy), 4)
 
     return average_loss, eval_accuracy, eval_f1, eval_precision, eval_recall
