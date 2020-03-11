@@ -1,5 +1,5 @@
 import csv
-from d import Dict
+from pydict import Dict
 import argparse
 
 dic = Dict('../data')
