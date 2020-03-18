@@ -77,6 +77,22 @@ class DataProcessor(object):
                 lines.append(line)
             return lines
 
+def lcs(x, y):
+    dp = [([0] * (len(y)+1)) for i in range(len(x)+1)]
+    maxlen = maxindex_x = maxindex_y = 0
+    for i in range(1, len(x)+1):
+        for j in range(1, len(y)+1):
+            if x[i-1] == y[j-1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+                if dp[i][j] > maxlen:  
+                    maxlen = dp[i][j]
+                    maxindex_x = i - maxlen
+                    maxindex_y = j - maxlen
+            else:
+                dp[i][j] = 0
+    x_start = maxindex_x + 1
+    y_start = len(x) + 2 + maxindex_y
+    return x_start, y_start, maxlen
 
 def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer, task_sign="ner"):
     # load a data file into a list of "InputBatch"
@@ -87,7 +103,7 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
         tokens_a = tokenizer.tokenize(process_sent(example.text_a))
         tokens_b = None
         if example.text_b:
-            tokens_b = tokenizer.tokenize(example.text_b)
+            tokens_b = tokenizer.tokenize(process_sent(example.text_b))
             # Modifies `tokens_a` and `tokens_b` in place so that the total
             # length is less than the specified length.
             # Account for [CLS], [SEP], [SEP] with "- 3"
@@ -96,7 +112,7 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
             # Account for [CLS] and [SEP] with "- 2"
             if len(tokens_a) > max_seq_length - 2:
                 tokens_a = tokens_a[:(max_seq_length - 2)]
-
+        a_start, b_start, max_len = lcs(tokens_a, tokens_b)
         tokens = ["[CLS]"] + tokens_a + ["[SEP]"]
         segment_ids = [0] * len(tokens)
 
@@ -109,6 +125,8 @@ def convert_examples_to_features(examples, label_list, max_seq_length, tokenizer
         # input_mask = [1] * len(input_ids)
         # input_mask = [0] + [1] * (len(input_ids) - 2) + [0]
         input_mask = [1] * len(input_ids)
+        input_mask[a_start: a_start + max_len] = [0] * max_len
+        input_mask[b_start: b_start + max_len] = [0] * max_len
 
         # zero padding up to the sequence length
         padding = [0] * (max_seq_length - len(input_ids))
